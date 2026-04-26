@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS utilisateurs (
     username VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL
+    role ENUM('admin', 'client') NOT NULL DEFAULT 'client'
 );
 
 CREATE TABLE IF NOT EXISTS produits (
@@ -31,4 +32,9 @@ CREATE TABLE IF NOT EXISTS commande_details (
     quantite INT NOT NULL,
     FOREIGN KEY (commande_id) REFERENCES commandes(id) ON DELETE CASCADE,
     FOREIGN KEY (produit_id) REFERENCES produits(id) ON DELETE CASCADE
+);
+CREATE TABLE IF NOT EXISTS produitstatus (
+   id int primary key auto_increment,
+   nom varchar(50),
+   statut varchar(50)
 );

@@ -19,11 +19,12 @@ if (session_status() === PHP_SESSION_NONE) {
         <div class="nav-brand"><a href="index.php">L'Alternative Éthique</a></div>
         <div class="nav-links">
             <a href="index.php"><i class="fa fa-home"></i> Produits</a>
-            <?php if (isset($_SESSION['user_id'])): ?>
-                <a href="panier.php"><i class="fa fa-shopping-cart">
-                     
-                </i> Panier</a>
-                <a href="historique.php"><i class="fa fa-history"></i> Historique</a>
+            <?php if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'client'): ?>
+                <a href="panier.php"><i class="fa fa-shopping-cart"></i> Panier</a>
+                <a href="historique.php"><i class="fa fa-history"></i> Historique</a>            
+                <a href="logout.php"> <i class="fa fa-sign-out" style="color: #f17373ff;"></i> Déconnexion </a>
+            <?php elseif (isset($_SESSION['user_id']) && $_SESSION['role'] === 'admin'): ?>
+                <a href="liste_commandes.php" ><i class="fa fa-list"></i> Commandes </a>
                 <a href="logout.php"> <i class="fa fa-sign-out" style="color: #f17373ff;"></i> Déconnexion </a>
             <?php else: ?>
                 <a href="login.php"><i class="fa fa-sign-in" style="color: #61ee3eff;"></i> Connexion</a>

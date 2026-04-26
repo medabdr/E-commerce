@@ -1,6 +1,9 @@
 <?php
 require 'db.php';
-require 'header.php';
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 $message = '';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -8,7 +11,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
 
-    
     $check_query = "SELECT * FROM utilisateurs WHERE email = '$email'";
     $result = mysqli_query($conn, $check_query);
 
@@ -17,13 +19,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         $insert_query = "INSERT INTO utilisateurs (username, email, password) VALUES ('$username', '$email', '$password')";
         if (mysqli_query($conn, $insert_query)) {
-            echo "<script>alert('Inscription réussie ! Vous pouvez vous connecter.'); window.location.href='login.php';</script>";
+            header("Location: login.php?msg=success");
             exit;
         } else {
             $message = "Erreur lors de l'inscription.";
         }
     }
 }
+
+require 'header.php';
 ?>
 
 <div class="auth-card">

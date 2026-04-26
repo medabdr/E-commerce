@@ -67,6 +67,8 @@ $result = mysqli_query($conn, $query);
                                 }
                             ?>
                         </ul>
+                        
+                        <strong>confirmer la commande en envoyant un message (numero de commande et paiement capture) au whatsapp <a href="https://wa.me/22234843010?text=<?= urlencode("Bonjour j'aimerais confirmer la commande numero #" . $row['commande_id']) ?> " style="color:var(--primary); font-weight:bold;"><u>34843010</u></a></strong>
                     </td>
                 </tr>
                 <?php endwhile; ?>

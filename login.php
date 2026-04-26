@@ -1,8 +1,17 @@
 <?php
 require 'db.php';
-require 'header.php';
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 $message = '';
+$success = '';
+
+if (isset($_GET['msg']) && $_GET['msg'] === 'success') {
+    $success = "Inscription réussie ! Vous pouvez vous connecter.";
+}
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $password = $_POST['password'];
@@ -15,7 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($password === $user['password']) {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['username'] = $user['username'];
-            echo "<script>window.location.href='index.php';</script>";
+            $_SESSION['role'] = $user['role'] ?? 'client';
+            header("Location: index.php");
             exit;
         } else {
             $message = "Mot de passe incorrect.";
@@ -24,10 +34,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $message = "Aucun utilisateur trouvé avec cet email.";
     }
 }
+
+require 'header.php';
 ?>
 
 <div class="auth-card">
     <h2>Connexion</h2>
+    <?php if ($success): ?>
+        <div class="alert alert-success"><?= htmlspecialchars($success) ?></div>
+    <?php endif; ?>
     <?php if ($message): ?>
         <div class="alert alert-error"><?= htmlspecialchars($message) ?></div>
     <?php endif; ?>

@@ -22,7 +22,13 @@ $queries = [
         id INT AUTO_INCREMENT PRIMARY KEY,
         username VARCHAR(100) NOT NULL,
         email VARCHAR(100) NOT NULL UNIQUE,
-        password VARCHAR(255) NOT NULL
+        password VARCHAR(255) NOT NULL,
+        role ENUM('admin', 'client') NOT NULL DEFAULT 'client'
+    )",
+    "CREATE TABLE IF NOT EXISTS produitstatus (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        nom VARCHAR(50) NOT NULL,
+        statu VARCHAR(50) NOT NULL
     )",
     "CREATE TABLE IF NOT EXISTS produits (
         id INT AUTO_INCREMENT PRIMARY KEY,
