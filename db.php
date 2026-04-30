@@ -4,6 +4,7 @@ $host = "localhost";
 $user = "root";
 $pass = "";
 $dbname = "commerce";
+$dbname = "commerce";
 
 
 $conn = mysqli_connect($host, $user, $pass);
