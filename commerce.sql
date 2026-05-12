@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS commande_details (
     FOREIGN KEY (produit_id) REFERENCES produits(id) ON DELETE CASCADE
 );
 CREATE TABLE IF NOT EXISTS produitstatus (
-   id int primary key auto_increment,
-   nom varchar(50),
-   statut varchar(50)
+    id int primary key auto_increment,
+    nom varchar(50),
+    statut varchar(50)
 );

@@ -70,17 +70,17 @@ while ($row = mysqli_fetch_assoc($result)) {
 }
 ?>
 <div style="display: flex; justify-content: space-between;padding: 1rem ; align-items: center; margin-bottom: 2rem; ;  height: 270px; border-radius: 12px ; border: 1px solid var(--primary); background-image: linear-gradient(transparent, rgba(0,0,0,0.5)), url('assets/bg8.jpeg'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;">
-    <div style="filter: contrast(800%) saturate(200%) brightness(260%); width: 250px ; height: 190px ;  margin-top: 9.5rem; background-image: linear-gradient(transparent, rgba(91, 211, 58, 0)), url('assets/save.png'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;" >
+    <div style="filter: contrast(800%) saturate(200%) brightness(260%); width: 265px ; height: 190px ;  margin-top: 9.5rem; background-image: linear-gradient(transparent, rgba(91, 211, 58, 0)), url('assets/savem2.png'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;" >
          
     </div>
     <div style="display: flex; flex-direction: column;  align-items: center; margin-bottom: 2rem; ; padding: 1rem; height: 250px; border-radius: 12px ; ">
-        <h1 style="color: white ; font-size: 2rem; font-weight: bold; text-align: center; font-family: 'Nocturne', serif; padding-top: 1.5rem;">DÉCOUVREZ L'ÉLECTRONIQUE ÉTHIQUE</h1>
-        <h1 style="color: white; font-size: 1.5rem; font-weight: bold; text-align: center; font-family: 'Nocturne', serif; padding-top: 0.5rem;">LA TECHNOLOGIE SANS COMPROMIS,</h1>
-        <h1 style="color: white; font-size: 1.5rem; font-weight: bold; text-align: center; font-family: 'Nocturne', serif; padding-top: 1rem;">100% AUCUN SOUTIEN À ISRAËL.</h1>
+        <h1 style="color: white ; font-size: 1.8rem; font-weight: bold; text-align: center; font-family: 'Nocturne', serif; padding-top: 1.5rem;">DÉCOUVREZ L'ÉLECTRONIQUE ÉTHIQUE</h1>
+        <h1 style="color: white; font-size: 1.4rem; font-weight: bold; text-align: center; font-family: 'Nocturne', serif; padding-top: 0.5rem;">LA TECHNOLOGIE SANS COMPROMIS,</h1>
+        <h1 style="color: white; font-size: 1.4rem; font-weight: bold; text-align: center; font-family: 'Nocturne', serif; padding-top: 1rem;">100% AUCUN SOUTIEN À ISRAËL.</h1>
 
         <a href="index.php#noscategories" class="btn btn-primary"> Voir les catégories<i class="fa fa-arrow-down" style="margin-left: 9px;"> </i></a>
     </div>
-    <div style="filter: contrast(300%) saturate(250%) brightness(110%); width: 120px ; height: 140px ;margin-left: 5.5rem;margin-right: 1.5rem;  margin-top: 9.5rem; background-image: linear-gradient(transparent, rgba(91, 211, 58, 0)), url('assets/danger'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;" >
+    <div style="filter: contrast(300%) saturate(250%) brightness(110%); width: 172px ; height: 140px ;margin-left: 5.5rem;margin-right: 1.5rem;  margin-top: 9.5rem; background-image: linear-gradient(transparent, rgba(91, 211, 58, 0)), url('assets/danger.png'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative;" >
          
     </div>
 </div>
