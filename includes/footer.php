@@ -23,7 +23,7 @@
                 <h4 style="color: var(--primary); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.9rem;">Contact</h4>
                 <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.8rem; color: var(--on-surface-variant); font-size: 0.9rem;">
                     <li><i class="fa fa-envelope" style="margin-right: 0.5rem; color: var(--primary);"></i> contact@alternative.mr</li>
-                    <li><i class="fa fa-phone" style="margin-right: 0.5rem; color: var(--primary);"></i> +222 40 00 00 00</li>
+                    <li><i class="fa fa-phone" style="margin-right: 0.5rem; color: var(--primary);"></i> +222 34 84 30 10</li>
                     <li><i class="fa fa-map-marker" style="margin-right: 0.5rem; color: var(--primary);"></i> Nouakchott, Mauritanie</li>
                 </ul>
             </div>

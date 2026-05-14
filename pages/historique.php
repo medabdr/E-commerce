@@ -8,14 +8,15 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 $user_id = $_SESSION['user_id'];
-$query = "SELECT c.id as commande_id, c.date, 
+$query = "SELECT c.id as commande_id, c.date, u.username,
           SUM(p.prix * cd.quantite) as total_prix,
           SUM(cd.quantite) as total_articles
           FROM commandes c
+          JOIN utilisateurs u ON c.user_id = u.id
           JOIN commande_details cd ON c.id = cd.commande_id
           JOIN produits p ON cd.produit_id = p.id
           WHERE c.user_id = $user_id
-          GROUP BY c.id
+          GROUP BY c.id, c.date, u.username
           ORDER BY c.date DESC";
 
 $result = mysqli_query($conn, $query);
@@ -68,7 +69,11 @@ $result = mysqli_query($conn, $query);
                             ?>
                         </ul>
                         
-                        <strong>confirmer la commande en envoyant un message (numero de commande et paiement capture) au whatsapp <a href="https://wa.me/22234843010?text=<?= urlencode("Bonjour j'aimerais confirmer la commande numero #" . $row['commande_id']) ?> " style="color:var(--primary); font-weight:bold;"><u>34843010</u></a></strong>
+                        <?php 
+                            $whatsapp_msg = "Bonjour je m'appelle " . $row['username'] . ", je veux confirmer la commande numero #" . $row['commande_id'] . ".\n\nPrix Total: " . number_format($row['total_prix']) . " MRU\nDate: " . $row['date'];
+                            $whatsapp_url = "https://wa.me/22234843010?text=" . urlencode($whatsapp_msg);
+                        ?>
+                        <strong>confirmer la commande en envoyant un message (numero de commande et paiement capture) au whatsapp <a href="<?= htmlspecialchars($whatsapp_url) ?>" style="color:var(--primary); font-weight:bold;"><u>34843010</u></a></strong>
                     </td>
                 </tr>
                 <?php endwhile; ?>
