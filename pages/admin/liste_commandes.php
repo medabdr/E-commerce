@@ -1,14 +1,14 @@
 <?php
-require 'db.php';
-require 'header.php';
+require '../../config/db.php';
+require '../../includes/header.php';
 
 if (!isset($_SESSION['user_id'])) {
-    header('Location: login.php');
+    header('Location: ' . BASE_URL . 'pages/login.php');
     exit;
 }
 
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-    header('Location: index.php');
+    header('Location: ' . BASE_URL . 'index.php');
     exit;
 }
 
@@ -61,4 +61,4 @@ $result = mysqli_query($conn, $query);
     </div>
 <?php endif; ?>
 
-<?php require 'footer.php'; ?>
+<?php require '../../includes/footer.php'; ?>

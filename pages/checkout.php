@@ -1,16 +1,16 @@
 <?php
-require 'db.php';
+require '../config/db.php';
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
 if (!isset($_SESSION['user_id'])) {
-    header('Location: login.php');
+    header('Location: ' . BASE_URL . 'pages/login.php');
     exit;
 }
 
 if (!isset($_SESSION['panier']) || empty($_SESSION['panier'])) {
-    header('Location: panier.php');
+    header('Location: ' . BASE_URL . 'pages/panier.php');
     exit;
 }
 
@@ -38,18 +38,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Clear cart
         $_SESSION['panier'] = [];
         
-        require 'header.php';
+        require '../includes/header.php';
         echo "<div class='container' style='text-align:center; padding: 4rem 0;'>";
         echo "<h2>Commande validée avec succès !</h2>";
         echo "<p style='color:var(--on-surface-variant); margin-top:1rem;'>Merci pour votre achat.</p>";
-        echo "<a href='historique.php' class='btn btn-primary' style='margin-top: 2rem;'>Voir mes commandes</a>";
+        echo "<a href='" . BASE_URL . "pages/historique.php' class='btn btn-primary' style='margin-top: 2rem;'>Voir mes commandes</a>";
         echo "</div>";
-        require 'footer.php';
+        require '../includes/footer.php';
         exit;
     } else {
         die("Erreur lors de la création de la commande.");
     }
 } else {
-    header('Location: panier.php');
+    header('Location: ' . BASE_URL . 'pages/panier.php');
 }
 ?>

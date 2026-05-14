@@ -1,9 +1,9 @@
 <?php
-require 'db.php';
-require 'header.php';
+require '../config/db.php';
+require '../includes/header.php';
 
 if (!isset($_SESSION['user_id'])) {
-    header('Location: login.php');
+    header('Location: ' . BASE_URL . 'pages/login.php');
     exit;
 }
 
@@ -40,7 +40,7 @@ $total = 0;
                     <td><?= htmlspecialchars($produit['nom']) ?></td>
                     <td><?= htmlspecialchars($produit['prix']) ?> MRU</td>
                     <td>
-                        <form method="POST" action="cart_actions.php" style="display: flex; gap: 0.5rem; align-items: center;">
+                        <form method="POST" action="<?= BASE_URL ?>actions/cart_actions.php" style="display: flex; gap: 0.5rem; align-items: center;">
                             <input type="hidden" name="action" value="update">
                             <input type="hidden" name="produit_id" value="<?= $id ?>">
                             <input type="number" name="quantite" class="form-control" value="<?= $quantite ?>" min="1" max="<?= $produit['stock'] ?>" style="width: 80px; padding: 0.5rem; border-radius: 8px;">
@@ -49,7 +49,7 @@ $total = 0;
                     </td>
                     <td><?= number_format($sous_total, 2) ?> MRU</td>
                     <td>
-                        <form method="POST" action="cart_actions.php">
+                        <form method="POST" action="<?= BASE_URL ?>actions/cart_actions.php">
                             <input type="hidden" name="action" value="remove">
                             <input type="hidden" name="produit_id" value="<?= $id ?>">
                             <button type="submit" class="btn btn-danger" style="padding: 0.5rem 1rem;">Retirer</button>
@@ -62,11 +62,11 @@ $total = 0;
         
         <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(43,77,86,0.3); padding-top: 1.5rem; margin-top: 1.5rem;">
             <h3>Total : <?= number_format($total, 2) ?> MRU</h3>
-            <form method="POST" action="checkout.php">
+            <form method="POST" action="<?= BASE_URL ?>pages/checkout.php">
                 <button type="submit" class="btn btn-primary" >Valider la commande</button>
             </form>
         </div>
     </div>
 <?php endif; ?>
 
-<?php require 'footer.php'; ?>
+<?php require '../includes/footer.php'; ?>

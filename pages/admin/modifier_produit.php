@@ -1,15 +1,15 @@
 <?php
-require 'db.php';
-require 'header.php';
-require_once 'saveimages.php';
+require '../../config/db.php';
+require '../../includes/header.php';
+require_once '../../actions/saveimages.php';
 
 if (!isset($_SESSION['user_id'])) {
-    header('Location: login.php');
+    header('Location: ' . BASE_URL . 'pages/login.php');
     exit;
 }
 
 if (!isset($_GET['id'])) {
-    header('Location: index.php');
+    header('Location: ' . BASE_URL . 'index.php');
     exit;
 }
 
@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     
     if (mysqli_query($conn, $query)) {
-        header('Location: index.php');
+        header('Location: ' . BASE_URL . 'index.php');
         exit;
     } else {
         $message = "Erreur lors de la modification.";
@@ -60,8 +60,8 @@ $produit = mysqli_fetch_assoc($result);
         <div class="form-group">
             <label class="form-label">Catégorie</label>
             <select name="categorie" class="form-control" required>
-                <option value="Smartphone" <?= strtolower($produit['categorie']) == 'smartphone' ? 'selected' : '' ?>>Smartphone</option>
-                <option value="Laptop" <?= strtolower($produit['categorie']) == 'laptop' ? 'selected' : '' ?>>Laptop</option>
+                <option value="Téléphone" <?= strtolower($produit['categorie']) == 'téléphone' || strtolower($produit['categorie']) == 'telephone' ? 'selected' : '' ?>>Téléphone</option>
+                <option value="Ordinateur" <?= strtolower($produit['categorie']) == 'ordinateur' ? 'selected' : '' ?>>Ordinateur</option>
                 <option value="Tablette" <?= strtolower($produit['categorie']) == 'tablette' ? 'selected' : '' ?>>Tablette</option>
                 <option value="Autre" <?= strtolower($produit['categorie']) == 'autre' ? 'selected' : '' ?>>Autre</option>
            </select>
@@ -90,7 +90,8 @@ $produit = mysqli_fetch_assoc($result);
         <div class="form-group">
             <label class="form-label">Image actuelle</label>
             <?php if (!empty($produit['image'])): ?>
-                <br><img src="<?= htmlspecialchars($produit['image']) ?>" alt="Image" style="max-height: 100px; margin-bottom: 1rem; border-radius: 8px;">
+                <?php $img_path = strpos($produit['image'], 'uploads/') === 0 ? BASE_URL . 'public/' . $produit['image'] : $produit['image']; ?>
+                <br><img src="<?= htmlspecialchars($img_path) ?>" alt="Image" style="max-height: 100px; margin-bottom: 1rem; border-radius: 8px;">
             <?php else: ?>
                 <p style="color:var(--on-surface-variant); font-size: 0.875rem;">Aucune image</p>
             <?php endif; ?>
@@ -103,9 +104,9 @@ $produit = mysqli_fetch_assoc($result);
         </div>
         <div style="display: flex; gap: 1rem;">
             <button type="submit" class="btn btn-primary" style="flex: 1;">Enregistrer</button>
-            <a href="index.php" class="btn btn-secondary" style="flex: 1;">Annuler</a>
+            <a href="<?= BASE_URL ?>index.php" class="btn btn-secondary" style="flex: 1;">Annuler</a>
         </div>
     </form>
 </div>
 
-<?php require 'footer.php'; ?>
+<?php require '../../includes/footer.php'; ?>

@@ -1,5 +1,5 @@
 <?php
-require 'db.php';
+require '../config/db.php';
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['username'] = $user['username'];
             $_SESSION['role'] = $user['role'] ?? 'client';
-            header("Location: index.php");
+            header("Location: " . BASE_URL . "index.php");
             exit;
         } else {
             $message = "Mot de passe incorrect.";
@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-require 'header.php';
+require '../includes/header.php';
 ?>
 
 <div class="auth-card">
@@ -57,7 +57,7 @@ require 'header.php';
         </div>
         <button type="submit" class="btn btn-primary" style="width: 100%;">Se Connecter</button>
     </form>
-    <p style="text-align:center; margin-top:1.5rem;">Pas encore de compte ? <a href="register.php" style="color:var(--secondary)">S'inscrire</a></p>
+    <p style="text-align:center; margin-top:1.5rem;">Pas encore de compte ? <a href="<?= BASE_URL ?>pages/register.php" style="color:var(--secondary)">S'inscrire</a></p>
 </div>
 
-<?php require 'footer.php'; ?>
+<?php require '../includes/footer.php'; ?>

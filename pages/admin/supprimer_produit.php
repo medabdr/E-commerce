@@ -1,11 +1,11 @@
 <?php
-require 'db.php';
+require '../../config/db.php';
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
 if (!isset($_SESSION['user_id'])) {
-    header('Location: login.php');
+    header('Location: ' . BASE_URL . 'pages/login.php');
     exit;
 }
 
@@ -15,6 +15,6 @@ if (isset($_GET['id'])) {
     mysqli_query($conn, $query);
 }
 
-header('Location: index.php');
+header('Location: ' . BASE_URL . 'index.php');
 exit;
 ?>

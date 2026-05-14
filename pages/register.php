@@ -1,5 +1,5 @@
 <?php
-require 'db.php';
+require '../config/db.php';
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         $insert_query = "INSERT INTO utilisateurs (username, email, password) VALUES ('$username', '$email', '$password')";
         if (mysqli_query($conn, $insert_query)) {
-            header("Location: login.php?msg=success");
+            header("Location: " . BASE_URL . "pages/login.php?msg=success");
             exit;
         } else {
             $message = "Erreur lors de l'inscription.";
@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-require 'header.php';
+require '../includes/header.php';
 ?>
 
 <div class="auth-card">
@@ -50,7 +50,7 @@ require 'header.php';
         </div>
         <button type="submit" class="btn btn-primary" style="width: 100%;">S'inscrire</button>
     </form>
-    <p style="text-align:center; margin-top:1.5rem;">Déjà inscrit ? <a href="login.php" style="color:var(--secondary)">Se connecter</a></p>
+    <p style="text-align:center; margin-top:1.5rem;">Déjà inscrit ? <a href="<?= BASE_URL ?>pages/login.php" style="color:var(--secondary)">Se connecter</a></p>
 </div>
 
-<?php require 'footer.php'; ?>
+<?php require '../includes/footer.php'; ?>

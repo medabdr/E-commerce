@@ -1,10 +1,10 @@
 <?php
-require 'db.php';
-require 'header.php';
-require_once 'saveimages.php';
+require '../../config/db.php';
+require '../../includes/header.php';
+require_once '../../actions/saveimages.php';
 
 if (!isset($_SESSION['user_id'])) {
-    header('Location: login.php');
+    header('Location: ' . BASE_URL . 'pages/login.php');
     exit;
 }
 
@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $query = "INSERT INTO produits (nom, categorie, prix, image, stock) VALUES ('$nom', '$categorie', $prix, '$image', $stock)";
     if (mysqli_query($conn, $query)) {
-        header('Location: index.php');
+        header('Location: ' . BASE_URL . 'index.php');
         exit;
     } else {
         $message = "Erreur lors de l'ajout.";
@@ -40,15 +40,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="form-group">
             <label class="form-label">catégorie</label>
             <select name="categorie" class="form-control" required>
-            <option value="Smartphone">Smartphone</option>
-            <option value="Laptop">Laptop</option>
+            <option value="Téléphone">Téléphone</option>
+            <option value="Ordinateur">Ordinateur</option>
             <option value="Tablette">Tablette</option>
             <option value="Autre">Autre</option>
 
 
-           </select>
-            
-            
+            </select>
         </div>
         <div class="form-group">
             <label class="form-label">Prix MRU</label>
@@ -83,4 +81,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </form>
 </div>
 
-<?php require 'footer.php'; ?>
+<?php require '../../includes/footer.php'; ?>

@@ -1,9 +1,10 @@
 <?php
+define('BASE_URL', '/E-commerce/');
 
 $host = "localhost";
 $user = "root";
 $pass = "";
-$dbname = "commerce";
+$dbname = "s4projet";
 
 
 $conn = mysqli_connect($host, $user, $pass);
